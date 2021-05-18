@@ -21,13 +21,13 @@ void midifreq()
 	/* calculate required numbers */
 	semitone_ratio = pow(2, 1/12.0);
 
-	c5 = 220.0 * pow(semitone_ratio, 3);
-	c0 = c5 * pow(0.5, 5);
+//	c5 = 220.0 * pow(semitone_ratio, 3.0);
+//	c0 = c5 * pow(0.5, 5.0);
 
 	// Calculate freq for given MIDI Note.
 	midinote = 73;
-	frequency = c0 * pow(semitone_ratio, midinote);
-	printf("MIDI Note %d" midinote);
+//	frequency = c0 * pow(semitone_ratio, midinote);
+//	printf("MIDI Note %d has frequency of %f\n,", midinote, frequency);
 
 
 	printf("midifreq/001**\n");
@@ -93,3 +93,7 @@ int main(){
 // This operation, known as raisong to a
 // power, is notaded mathematically as
 // 1.0594631^12.
+//
+//
+
+
