@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void tonic(){
-	printf("tonic12345");
+	printf("tonicsbaby");
 }
 
 
