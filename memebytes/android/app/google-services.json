@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916401734708",
+    "project_id": "memebytes-8a252",
+    "storage_bucket": "memebytes-8a252.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916401734708:android:12081a7bf426127d69f661",
+        "android_client_info": {
+          "package_name": "com.example.memebytes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916401734708-me54rej9k1vdi6u12nf6ttb7518onb8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCng0WYAeK_u-wqLezy_KUClehJnkmFbGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916401734708-me54rej9k1vdi6u12nf6ttb7518onb8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
