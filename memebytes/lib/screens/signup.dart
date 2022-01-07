@@ -12,6 +12,7 @@ class SignUp extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
       // appBar: AppBar(
       //   title: const Text('Login'),
@@ -24,7 +25,14 @@ class SignUp extends GetWidget<AuthController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.indigo),
+                  ),
                   hintText: "Email",
                   hintStyle: TextStyle(
                     color: Colors.white,
@@ -33,7 +41,14 @@ class SignUp extends GetWidget<AuthController> {
                 controller: emailController,
               ),
               TextField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.indigo),
+                  ),
                   hintText: "Password",
                   hintStyle: TextStyle(
                     color: Colors.white,
@@ -51,7 +66,7 @@ class SignUp extends GetWidget<AuthController> {
                       primary: Colors.white,
                       side: const BorderSide(color: Colors.amber),
                       padding: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 20),
+                          vertical: 15, horizontal: 35),
                     ),
 
                     // onPressed: () async {
@@ -70,30 +85,20 @@ class SignUp extends GetWidget<AuthController> {
                       ),
                     ),
                   ),
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      primary: Colors.white,
-                      side: const BorderSide(
-                        color: Colors.amber,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 20),
-                    ),
-                    // onPressed: () async {
-                    //   authController.login(emailController.text.trim(),
-                    //       passwordController.text.trim());
-                    // },
-                    onPressed: () {
-                      Get.to(Login());
-                    },
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
                 ],
+              ),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  Get.to(Login());
+                },
+                child: const Text(
+                  'Have an account?',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.lightBlue,
+                  ),
+                ),
               ),
             ],
           ),

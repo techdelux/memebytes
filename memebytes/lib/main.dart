@@ -19,8 +19,12 @@ class Base extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      home: Login(),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Login(),
+      ),
     );
   }
 }
