@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:memebytes/utils/root.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -25,11 +26,13 @@ class AuthController extends GetxController {
       await _googleSignIn.signOut();
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      Get.back();
     } catch (firebaseAuthExeption) {
       Get.snackbar(
         "Error Creating User",
         firebaseAuthExeption.toString(),
         snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.white,
       );
     }
   }
@@ -39,6 +42,7 @@ class AuthController extends GetxController {
       await _googleSignIn.signOut();
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      Get.to(Root());
     } catch (firebaseAuthExeption) {
       Get.snackbar(
         "Error Signing In",

@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:memebytes/controllers/authController.dart';
-import 'package:memebytes/screens/login.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:memebytes/utils/root.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class Base extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        home: Root(),
       ),
     );
   }

@@ -81,7 +81,7 @@ class SignUp extends GetWidget<AuthController> {
                     child: const Text(
                       "SignUp",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                   ),
