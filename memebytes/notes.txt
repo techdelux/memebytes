@@ -1,0 +1,8 @@
+Commit tracking:
+
+lounge/001
+
+Created login and signup page.
+They both connect to database via getx controller.
+
+Pending: Go to main page on login/signup.
