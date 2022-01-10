@@ -6,6 +6,7 @@ import 'package:memebytes/controllers/authController.dart';
 import 'package:memebytes/screens/login.dart';
 
 class SignUp extends GetWidget<AuthController> {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -24,6 +25,22 @@ class SignUp extends GetWidget<AuthController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              TextField(
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.indigo),
+                  ),
+                  hintText: "Name",
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                controller: nameController,
+              ),
               TextField(
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
@@ -75,7 +92,7 @@ class SignUp extends GetWidget<AuthController> {
                     // },
 
                     onPressed: () {
-                      controller.createUser(
+                      controller.createUser(nameController.text,
                           emailController.text, passwordController.text);
                     },
                     child: const Text(

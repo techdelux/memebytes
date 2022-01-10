@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:memebytes/controllers/authController.dart';
+import 'package:memebytes/controllers/userController.dart';
 // import 'package:memebytes/screens/login.dart';
 
 class Home extends GetWidget<AuthController> {
@@ -15,8 +16,15 @@ class Home extends GetWidget<AuthController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Text('HOMESCREEN'),
+            SizedBox(height: 20),
+            GetX<UserController>(
+              builder: (_) {
+                return Text("${_.user.name}");
+              },
+            ),
+            SizedBox(height: 20),
             OutlinedButton(
                 onPressed: () {
                   controller.signOut();

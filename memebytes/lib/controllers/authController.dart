@@ -4,6 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:memebytes/controllers/userController.dart';
+import 'package:memebytes/models/user.dart';
+import 'package:memebytes/services/database.dart';
 import 'package:memebytes/utils/root.dart';
 
 class AuthController extends GetxController {
@@ -11,8 +14,8 @@ class AuthController extends GetxController {
   final Rxn<User> _firebaseUser = Rxn<User>();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  // User? get user => _firebaseUser.value;
-  String? get user => _firebaseUser.value?.email;
+  User? get user => _firebaseUser.value;
+  // String? get user => _firebaseUser.value?.email;
   // User setUser(User user) => _firebaseUser.value = user;
 
   @override
@@ -21,12 +24,24 @@ class AuthController extends GetxController {
     _firebaseUser.bindStream(_firebaseAuth.authStateChanges());
   }
 
-  void createUser(String email, String password) async {
+  void createUser(String name, String email, String password) async {
     try {
-      await _googleSignIn.signOut();
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      Get.back();
+      // await _googleSignIn.signOut();
+      UserCredential _authResult =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+              email: email.trim(), password: password);
+      // Create user in firestore
+      UserModel _user = UserModel(
+        id: _authResult.user?.uid,
+        name: name,
+        email: _authResult.user?.email,
+      );
+      if (await Database().createNewUser(_user)) {
+        Get.find<UserController>().user = _user;
+        Get.back();
+      }
+
+      // Get.back();
     } catch (firebaseAuthExeption) {
       Get.snackbar(
         "Error Creating User",
@@ -40,8 +55,10 @@ class AuthController extends GetxController {
   void login(String email, String password) async {
     try {
       await _googleSignIn.signOut();
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential _authResult = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      Get.find<UserController>().user =
+          await Database().getUser(_authResult.user!.uid);
       Get.to(Root());
     } catch (firebaseAuthExeption) {
       Get.snackbar(
@@ -56,6 +73,7 @@ class AuthController extends GetxController {
 
   void signOut() async {
     await _firebaseAuth.signOut();
+    Get.find<AuthController>().dispose();
   }
 
   void signInWithGoogle() async {
