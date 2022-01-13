@@ -2,15 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:memebytes/controllers/authController.dart';
+// import 'package:memebytes/controllers/authController.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:memebytes/utils/root.dart';
+// import 'package:memebytes/controllers/userController.dart';
+// import 'package:memebytes/utils/root.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) {
     Get.put(AuthController());
   });
+  // Get.lazyPut(() => UserController());
   runApp(const Base());
 }
 
