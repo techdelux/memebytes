@@ -1,15 +1,1 @@
-Commit tracking:
 
-lounge/001
-
-Created login and signup page.
-They both connect to database via getx controller.
-
-Pending: Go to main page on login/signup.
-
-
-
-lounge/002
-
-Login and Signup redirect to homescreen.
-Added homescreen with a signout button.
