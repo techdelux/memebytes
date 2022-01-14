@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:memebytes/connectivity/authMethod.dart';
 import 'package:memebytes/utils/color.dart';
 import 'package:memebytes/widgets/textFieldInput.dart';
 
@@ -90,9 +93,17 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 20),
               // button login
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  String result = await AuthMethod().signup(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    username: _usernameController.text,
+                    bio: _bioController.text,
+                  );
+                  print(result);
+                },
                 child: Container(
-                  child: const Text('Log in'),
+                  child: const Text('Sign up'),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
