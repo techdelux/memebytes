@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, file_names
 
 import 'dart:typed_data';
 
@@ -23,6 +23,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   Uint8List? _image;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -38,6 +39,25 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       _image = image;
     });
+  }
+
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String result = await AuthMethod().signup(
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+      file: _image!,
+    );
+    setState(() {
+      _isLoading = false;
+    });
+    if (result != 'success!') {
+      showSnackBar(result, context);
+    }
   }
 
   @override
@@ -110,18 +130,14 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 20),
               // button login
               InkWell(
-                onTap: () async {
-                  String result = await AuthMethod().signup(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                    username: _usernameController.text,
-                    bio: _bioController.text,
-                    file: _image!,
-                  );
-                  print(result);
-                },
+                onTap: signUpUser,
                 child: Container(
-                  child: const Text('Sign up'),
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          color: primaryColor,
+                        ))
+                      : const Text('Sign up'),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
