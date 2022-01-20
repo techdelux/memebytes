@@ -6,7 +6,7 @@ import 'package:memebytes/responsive/responsiveScreen.dart';
 import 'package:memebytes/responsive/webLayout.dart';
 import 'package:memebytes/responsive/mobileLayout.dart';
 import 'package:memebytes/screens/loginScreen.dart';
-import 'package:memebytes/screens/signupScreen.dart';
+// import 'package:memebytes/screens/signupScreen.dart';
 import 'package:memebytes/utils/color.dart';
 
 void main() async {

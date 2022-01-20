@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:memebytes/connectivity/authMethod.dart';
+import 'package:memebytes/screens/loginScreen.dart';
 import 'package:memebytes/utils/color.dart';
 import 'package:memebytes/utils/utils.dart';
 import 'package:memebytes/widgets/textFieldInput.dart';
@@ -39,6 +40,14 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       _image = image;
     });
+  }
+
+  void navigateToLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
   }
 
   void signUpUser() async {
@@ -160,7 +169,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: navigateToLogin,
                     child: Container(
                       child: const Text(
                         "Log in.",
