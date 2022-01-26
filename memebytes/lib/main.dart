@@ -38,10 +38,6 @@ class Memebytes extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
       ),
-      // home: const ResponsiveLayout(
-      //   mobileScreenLayout: MobileScreenLayout(),
-      //   webScreenLayout: WebScreenLayout(),
-      // ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {

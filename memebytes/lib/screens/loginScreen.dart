@@ -1,6 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:memebytes/connectivity/authMethod.dart';
+import 'package:memebytes/responsive/mobileLayout.dart';
+import 'package:memebytes/responsive/responsiveScreen.dart';
+import 'package:memebytes/responsive/webLayout.dart';
 import 'package:memebytes/screens/signupScreen.dart';
 import 'package:memebytes/utils/color.dart';
 import 'package:memebytes/utils/utils.dart';
@@ -35,6 +40,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     if (result == "success!") {
       //
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
     } else {
       //
       showSnackBar(result, context);

@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:memebytes/connectivity/storage.dart';
+import 'package:memebytes/models/user_model.dart' as model;
 
 class AuthMethod {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,15 +34,20 @@ class AuthMethod {
             .uploadImageToStorage('profilePics', file, false);
 
         // add user to database
-        _firestore.collection('users').doc(credential.user!.uid).set({
-          'username': username,
-          'uid': credential.user!.uid,
-          'email': email,
-          'bio': bio,
-          'followers': [],
-          'following': [],
-          'photoUrl': photoUrl,
-        });
+
+        model.User user = model.User(
+          username: username,
+          uid: credential.user!.uid,
+          email: email,
+          bio: bio,
+          followers: [],
+          following: [],
+          photoUrl: photoUrl,
+        );
+
+        _firestore.collection('users').doc(credential.user!.uid).set(
+              user.toJson(),
+            );
         result = 'success!';
       }
     } on FirebaseAuthException catch (error) {

@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:memebytes/connectivity/authMethod.dart';
+import 'package:memebytes/responsive/mobileLayout.dart';
+import 'package:memebytes/responsive/responsiveScreen.dart';
+import 'package:memebytes/responsive/webLayout.dart';
 import 'package:memebytes/screens/loginScreen.dart';
 import 'package:memebytes/utils/color.dart';
 import 'package:memebytes/utils/utils.dart';
@@ -66,6 +69,15 @@ class _SignupScreenState extends State<SignupScreen> {
     });
     if (result != 'success!') {
       showSnackBar(result, context);
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
     }
   }
 
