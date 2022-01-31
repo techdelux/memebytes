@@ -1,6 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: file_names
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memebytes/utils/color.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
@@ -10,35 +14,46 @@ class MobileScreenLayout extends StatefulWidget {
 }
 
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
-  String username = "";
-
-  @override
-  // initState cannot become async. void function created right below.
-  void initState() {
-    // ignore: todo
-    // TODO: implement initState
-    super.initState();
-    getUsername();
-  }
-
-  void getUsername() async {
-    DocumentSnapshot snap = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get();
-
-    // print(snap.data());
-    setState(() {
-      // username = snap.data()!['username']; <-- bracket type data not supported
-      username = (snap.data() as Map<String, dynamic>)['username'];
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(username),
+        child: Text(
+          "mobile",
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+      ),
+      bottomNavigationBar: CupertinoTabBar(
+        backgroundColor: mobileBackgroundColor,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+            backgroundColor: primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: '',
+            backgroundColor: primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle),
+            label: '',
+            backgroundColor: primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: '',
+            backgroundColor: primaryColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: '',
+            backgroundColor: primaryColor,
+          ),
+        ],
       ),
     );
   }
