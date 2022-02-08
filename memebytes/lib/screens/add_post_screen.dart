@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -35,7 +34,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         profImage,
       );
 
-      if (result == "success!") {
+      if (result == "success") {
         showSnackBar("Posted!", context);
       } else {
         showSnackBar(result, context);
