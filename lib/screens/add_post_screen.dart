@@ -19,12 +19,16 @@ class AddPostScreen extends StatefulWidget {
 class _AddPostScreenState extends State<AddPostScreen> {
   Uint8List? _file;
   final TextEditingController _descriptionController = TextEditingController();
+  bool _isLoading = false;
 
   void postImage(
     String uid,
     String username,
     String profImage,
   ) async {
+    setState(() {
+      _isLoading = true;
+    });
     try {
       String result = await FirestoreMethods().uploadPost(
         _descriptionController.text,
@@ -35,8 +39,15 @@ class _AddPostScreenState extends State<AddPostScreen> {
       );
 
       if (result == "success") {
+        setState(() {
+          _isLoading = false;
+        });
         showSnackBar("Posted!", context);
+        clearImage();
       } else {
+        setState(() {
+          _isLoading = false;
+        });
         showSnackBar(result, context);
       }
     } catch (error) {
@@ -86,6 +97,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
     );
   }
 
+  void clearImage() {
+    setState(() {
+      _file = null;
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -108,7 +125,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               backgroundColor: mobileBackgroundColor,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () {},
+                onPressed: clearImage,
               ),
               title: const Text("Post to"),
               // centerTitle: true,
@@ -129,6 +146,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
             ),
             body: Column(
               children: [
+                _isLoading == true
+                    ? const LinearProgressIndicator()
+                    : const Padding(
+                        padding: EdgeInsets.only(top: 0),
+                      ),
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
