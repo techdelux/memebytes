@@ -37,7 +37,8 @@ class _CommentCardState extends State<CommentCard> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         TextSpan(
-                          text: ' some description to insert',
+                          text:
+                              ' some description to insert, for example I add more text 5:01:14',
                         ),
                       ],
                     ),
@@ -57,7 +58,7 @@ class _CommentCardState extends State<CommentCard> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(20),
             child: const Icon(Icons.favorite, size: 16),
           ),
         ],
