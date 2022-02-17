@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memebytes/utils/color.dart';
+import 'package:memebytes/widgets/comment_card.dart';
 
 class CommentsScreen extends StatefulWidget {
   const CommentsScreen({Key? key}) : super(key: key);
