@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:memebytes/connectivity/authMethod.dart';
+import 'package:memebytes/connectivity/auth_method.dart';
 import 'package:memebytes/responsive/mobileLayout.dart';
 import 'package:memebytes/responsive/responsiveScreen.dart';
 import 'package:memebytes/responsive/webLayout.dart';
 import 'package:memebytes/screens/signupScreen.dart';
 import 'package:memebytes/utils/color.dart';
+import 'package:memebytes/utils/global_variables.dart';
 import 'package:memebytes/utils/utils.dart';
 import 'package:memebytes/widgets/textFieldInput.dart';
 
@@ -70,7 +71,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: MediaQuery.of(context).size.width > webScreenSize
+              ? EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 3)
+              : const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

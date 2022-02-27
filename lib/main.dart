@@ -6,7 +6,7 @@ import 'package:memebytes/provider/user_provider.dart';
 import 'package:memebytes/responsive/responsiveScreen.dart';
 import 'package:memebytes/responsive/webLayout.dart';
 import 'package:memebytes/responsive/mobileLayout.dart';
-import 'package:memebytes/screens/loginScreen.dart';
+import 'package:memebytes/screens/login_screen.dart';
 // import 'package:memebytes/screens/signupScreen.dart';
 import 'package:memebytes/utils/color.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +75,3 @@ class Memebytes extends StatelessWidget {
     );
   }
 }
-
-
-
-

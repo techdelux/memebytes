@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:memebytes/connectivity/authMethod.dart';
+import 'package:memebytes/connectivity/auth_method.dart';
 import 'package:memebytes/models/user_model.dart';
 
 class UserProvider with ChangeNotifier {
