@@ -55,7 +55,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .contains(FirebaseAuth.instance.currentUser!.uid);
       setState(() {});
     } catch (e) {
-      showSnackBar(e.toString(), context);
+      showSnackBar(
+        e.toString(),
+        context,
+      );
     }
     setState(() {
       isLoading = false;
